@@ -1,0 +1,41 @@
+/* 版心 */
+.w {
+    width: 1220px;
+    margin: 0 auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.good-price {
+    display: none;
+    width: 100%;
+    height: 30px;
+    /* // display: inline-block; */
+    line-height: 30px;
+    text-align: center;
+    margin: 15px 0;
+
+
+}
+
+.good-price a {
+    cursor: pointer;
+    font-size: 13px;
+    margin-right: 15px;
+    background-color: #adadad;
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+}
