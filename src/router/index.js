@@ -62,6 +62,15 @@ const routes = [
       auth: true
     }
   },
+  // 结算页面
+  {
+    path: '/checkout',
+    component: () => import('../views/07-checkout.vue'),
+    meta: {
+      istrue: true
+
+    }
+  },
   // 重定向
   {
     path: '*',

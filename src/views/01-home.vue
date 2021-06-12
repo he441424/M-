@@ -186,6 +186,7 @@ export default {
         name,
         price
       })
+      this.$message.success('加入购物车成功')
     }
   }
 }

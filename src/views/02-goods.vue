@@ -182,6 +182,7 @@ export default {
     // 添加到购物车
     joinCart (id, img, name, price) {
       this.JOINCart({ id, img, name, price })
+      this.$message.success('加入购物车成功')
     }
   }
 }

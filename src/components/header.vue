@@ -79,7 +79,7 @@
           @mouseenter="SHOWCart(true)"
         >
           <el-badge :value="total" class="item"> </el-badge>
-          <a href="#" class="el-icon-shopping-cart-2"> </a>
+          <a href="#/cart" class="el-icon-shopping-cart-2"> </a>
           <div class="user-cart" v-show="showCart">
             <!-- 购物车数量 -->
 
@@ -98,7 +98,7 @@
                         <span class="num"> x{{ item.num }} </span>
                       </div>
                     </div>
-                    <div class="del" @click="del(item.id)">x</div>
+                    <div class="del el-icon-error" @click="del(item.id)"></div>
                   </div>
                 </li>
               </ul>
@@ -110,7 +110,9 @@
                   </h5>
                 </div>
                 <div class="button">
-                  <a href="#/cart"><button>去付款</button></a>
+                  <a href="#/cart"
+                    ><el-button type="primary" round>去购物车</el-button></a
+                  >
                 </div>
               </div>
             </div>
@@ -169,6 +171,7 @@ export default {
       // alert(id);
       // console.log(id);
       this.delCart(id)
+      this.$message.success('删除成功')
     },
     // 退出用户
     remover () {
@@ -313,7 +316,11 @@ export default {
     }
     .del {
       cursor: pointer;
+      font-size: 25px;
+      color: #ccc;
+      line-height: 50px;
     }
+
     // 总数
     .total {
       width: 100%;
@@ -324,12 +331,7 @@ export default {
         float: right;
         line-height: 80px;
         margin-right: 25px;
-        button {
-          width: 108px;
-          height: 40px;
-          border: 1px solid #5c81e3;
-          background: #678ee7;
-        }
+
         // display: inline-block;
       }
     }
