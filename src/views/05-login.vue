@@ -39,73 +39,65 @@
   </div>
 </template>
 <script>
-import { form, formItem, button, input } from "element-ui";
-import Vue from "vue";
-Vue.use(form);
-Vue.use(formItem);
-Vue.use(button);
-Vue.use(input);
-import { mapMutations } from "vuex";
-
-import axios from "axios";
+import { mapMutations } from 'vuex'
 
 export default {
-  data() {
-    let validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
+  data () {
+    const validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'))
       } else {
-        callback();
+        callback()
       }
-    };
-    let validateUser = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入账号"));
+    }
+    const validateUser = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入账号'))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
 
     return {
       ruleForm: {
-        pass: "",
-        user: "",
+        pass: '',
+        user: ''
       },
       rules: {
-        pass: [{ validator: validatePass, trigger: "blur" }],
-        user: [{ validator: validateUser, trigger: "blur" }],
-      },
-    };
+        pass: [{ validator: validatePass, trigger: 'blur' }],
+        user: [{ validator: validateUser, trigger: 'blur' }]
+      }
+    }
   },
   methods: {
-    ...mapMutations(["isuser"]),
+    ...mapMutations(['isuser']),
     // 提交
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // alert("submit!");
           // console.log(valid);
-          let content = JSON.stringify(this.ruleForm);
-          localStorage.setItem("name", content);
+          const content = JSON.stringify(this.ruleForm)
+          localStorage.setItem('name', content)
 
           // alert("传");
           // let user = localStorage.getItem("name").user;
-          let user = JSON.parse(localStorage.getItem("name")).user;
-          console.log(user);
-          this.isuser(user);
-          this.$router.push({ path: "/" });
+          const user = JSON.parse(localStorage.getItem('name')).user
+          // console.log(user);
+          this.isuser(user)
+          this.$router.push({ path: '/' })
         } else {
-          console.log("error submit!!");
-          return false;
+          // console.log("error submit!!");
+          return false
         }
-      });
+      })
     },
     // 重置
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
-    },
-  },
-};
+    resetForm (formName) {
+      this.$refs[formName].resetFields()
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 #big-box {

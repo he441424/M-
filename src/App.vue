@@ -65,26 +65,24 @@
   </div>
 </template>
 <script>
-import { backtop } from "element-ui";
-import Vue from "vue";
-Vue.use(backtop);
-import navs from "./components/nav";
-import buttom from "./components/buttom";
-import headers from "./components/header";
-import { mapState } from "vuex";
+import navs from './components/nav'
+import buttom from './components/buttom'
+import headers from './components/header'
+import { mapState } from 'vuex'
+
 export default {
   computed: {
-    ...mapState(["navShow"]),
+    ...mapState(['navShow'])
   },
   components: {
     navs,
     buttom,
-    headers,
+    headers
   },
-  data() {
-    return {};
-  },
-};
+  data () {
+    return {}
+  }
+}
 </script>
 <style lang="scss" scoped>
 .box {

@@ -11,20 +11,17 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { inputNumber } from "element-ui";
-Vue.use(inputNumber);
 export default {
-  data() {
+  data () {
     return {
-      num: 1,
-    };
+      num: 1
+    }
   },
   methods: {
-    handleChange(value) {
+    handleChange (value) {
       // console.log(value);
-      this.$emit("num", value);
-    },
-  },
-};
+      this.$emit('num', value)
+    }
+  }
+}
 </script>

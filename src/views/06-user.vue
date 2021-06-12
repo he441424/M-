@@ -2,30 +2,30 @@
   <div>user</div>
 </template>
 <script>
-import { mapMutations } from "vuex";
-import axios from "axios";
+import { mapMutations } from 'vuex'
+import axios from 'axios'
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
   methods: {
-    ...mapMutations(["showNav"]),
+    ...mapMutations(['showNav'])
   },
-  mounted() {
-    this.showNav(false);
+  mounted () {
+    this.showNav(false)
     axios({
-      url: "login.php",
-      method: "post",
+      url: 'login.php',
+      method: 'post',
       data: {
-        usere: "123",
-        pass: "122",
-      },
+        usere: '123',
+        pass: '122'
+      }
     }).then((res) => {
-      console.log(res);
-    });
+      // console.log(res)
+    })
   },
-  beforeDestroy() {
-    this.showNav(true);
-  },
-};
+  beforeDestroy () {
+    this.showNav(true)
+  }
+}
 </script>

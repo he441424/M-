@@ -143,56 +143,52 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import axios from 'axios'
 
-import Vue from "vue";
-import { carousel, carouselItem } from "element-ui";
-Vue.use(carousel);
-Vue.use(carouselItem);
-import { mapMutations } from "vuex";
+import { mapMutations } from 'vuex'
+
 export default {
-  data() {
+  data () {
     return {
-      //轮播图
+      // 轮播图
       banner: [],
       // 内容
-      homeList: [],
+      homeList: []
       // 显示隐藏
       // isShow: false,
-    };
+    }
   },
-  mounted() {
+  mounted () {
     axios({
-      url: "./js/home.json",
+      url: './js/home.json'
     }).then((res) => {
       // console.log(res);
-      console.log(res.data.result);
-      this.homeList = res.data.result;
-      this.banner = res.data.result[0].panelContents;
-      console.log(res.data.result[0].panelContents);
-    });
+      // console.log(res.data.result)
+      this.homeList = res.data.result
+      this.banner = res.data.result[0].panelContents
+      // console.log(res.data.result[0].panelContents)
+    })
   },
   methods: {
-    ...mapMutations(["JOINCart"]),
+    ...mapMutations(['JOINCart']),
     // 跳转详情页面
-    skipDetail(id) {
-      console.log(id);
-      this.$router.push(`/goodsDetails/${id}`);
+    skipDetail (id) {
+      // console.log(id)
+      this.$router.push(`/goodsDetails/${id}`)
       // this.$router.push(`/data/${id}`);
     },
     // 加入购物车
-    joinCart(id, img, name, price) {
+    joinCart (id, img, name, price) {
       // alert("加入购物车成功");
-
       this.JOINCart({
         id,
         img,
         name,
-        price,
-      });
-    },
-  },
-};
+        price
+      })
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 // 轮播图

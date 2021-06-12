@@ -57,15 +57,15 @@
 </template>
 <script>
 // 引入请求函数
-import axios from "axios";
-//引入number组件
-import numBer from "../components/num";
-import { mapMutations } from "vuex";
+import axios from 'axios'
+// 引入number组件
+import numBer from '../components/num'
+import { mapMutations } from 'vuex'
 export default {
   components: {
-    numBer,
+    numBer
   },
-  data() {
+  data () {
     return {
       // 数据
       list: [],
@@ -73,53 +73,55 @@ export default {
       smallImg: [],
       // 大图
       bigImg: [],
-      //加入购物车的数量
-      cartNum: 1,
-    };
+      // 加入购物车的数量
+      cartNum: 1
+    }
   },
-  mounted() {
+  mounted () {
+    // console.log()
     axios(
       // `/goods/productDet?productId=${this.$route.params.id}`
-      "./js/goodsDetails.json"
+      './js/goodsDetails.json'
       // "/goods/productDet?productId=150642571432837"
     ).then((res) => {
       // console.log(res.data.result);
-      let newList = res.data.result;
-      let lists = newList.find(
+      // console.log(this.$route.params.id);
+      const newList = res.data.result
+      const lists = newList.find(
         (item) => item.productId == this.$route.params.id
-      );
-      console.log(lists);
+      )
+      // console.log(lists);
 
       // console.log(res.data.result);
-      this.list = lists;
-      this.smallImg = lists.productImageSmall;
-      this.bigImg = this.smallImg[0];
-      console.log(lists.productImageSmall[0]);
-    });
+      this.list = lists
+      this.smallImg = lists.productImageSmall
+      this.bigImg = this.smallImg[0]
+      // console.log(lists.productImageSmall[0]);
+    })
   },
   methods: {
-    ...mapMutations(["JOINCart"]),
+    ...mapMutations(['JOINCart']),
     // 点击的时候切换图片
-    smallClick(src) {
-      this.bigImg = src;
+    smallClick (src) {
+      this.bigImg = src
     },
     // 数量
-    num(val) {
+    num (val) {
       // console.log(val);
-      this.cartNum = val;
+      this.cartNum = val
     },
     // 添加购物车
-    addCart(id, img, name, price, num) {
+    addCart (id, img, name, price, num) {
       this.JOINCart({
         id,
         img,
         name,
         price,
-        num,
-      });
-    },
-  },
-};
+        num
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

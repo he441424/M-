@@ -123,67 +123,60 @@
   </div>
 </template>
 <script>
-// 引入vue
-import Vue from "vue";
-// 引入element-ui
-import { input, avatar, badge, button } from "element-ui";
-Vue.use(input);
-Vue.use(avatar);
-Vue.use(badge);
-Vue.use(button);
-//引入vuex
-import { mapMutations, mapState } from "vuex";
+// 引入vuex
+import { mapMutations, mapState } from 'vuex'
+
 export default {
-  mounted() {
-    console.log(this.cartList);
+  mounted () {
+    // console.log(this.cartList)
   },
-  data() {
+  data () {
     return {
-      input: "",
+      input: '',
       // 购物车显示隐藏
-      isShow: false,
-    };
+      isShow: false
+    }
   },
   computed: {
     // 解构state
-    ...mapState(["login", "userInfo", "cartList", "showCart"]),
+    ...mapState(['login', 'userInfo', 'cartList', 'showCart']),
     // 计算总数
-    total() {
+    total () {
       return this.cartList.reduce((total, item) => {
-        total += item.num;
-        return total;
-      }, 0);
+        total += item.num
+        return total
+      }, 0)
     },
-    price() {
+    price () {
       return this.cartList.reduce((price, item) => {
-        price += item.num * item.price;
-        return price;
-      }, 0);
-    },
+        price += item.num * item.price
+        return price
+      }, 0)
+    }
   },
   methods: {
     // 解构
-    ...mapMutations(["SHOWCART", "delCart", "remove"]),
-    SHOWCart(state) {
-      this.SHOWCART(state);
+    ...mapMutations(['SHOWCART', 'delCart', 'remove']),
+    SHOWCart (state) {
+      this.SHOWCART(state)
     },
     // 头像
-    errorHandler() {
-      return true;
+    errorHandler () {
+      return true
     },
     // 删除
-    del(id) {
+    del (id) {
       // alert(id);
       // console.log(id);
-      this.delCart(id);
+      this.delCart(id)
     },
     // 退出用户
-    remover() {
-      localStorage.removeItem("name");
-      this.remove("");
-    },
-  },
-};
+    remover () {
+      localStorage.removeItem('name')
+      this.remove('')
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 // logo

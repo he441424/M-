@@ -31,28 +31,28 @@
   </div>
 </template>
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapState } from 'vuex'
 export default {
-  setup() {},
-  mounted() {
-    this.showNav(false);
+  setup () {},
+  mounted () {
+    this.showNav(false)
   },
   computed: {
-    ...mapState(["cartList"]),
-    price() {
+    ...mapState(['cartList']),
+    price () {
       return this.cartList.reduce((price, item) => {
-        price += item.price * item.num;
-        return price;
-      }, 0);
-    },
+        price += item.price * item.num
+        return price
+      }, 0)
+    }
   },
-  beforeDestroy() {
-    this.showNav(true);
+  beforeDestroy () {
+    this.showNav(true)
   },
   methods: {
-    ...mapMutations(["showNav"]),
-  },
-};
+    ...mapMutations(['showNav'])
+  }
+}
 </script>
 
 <style scoped>

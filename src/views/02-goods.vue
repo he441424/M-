@@ -74,18 +74,16 @@
   </div>
 </template>
 <script>
-import axios from "axios";
-import Vue from "vue";
-import { mapMutations } from "vuex";
-import { pagination } from "element-ui";
-Vue.use(pagination);
+import axios from 'axios'
+
+import { mapMutations } from 'vuex'
 
 export default {
-  data() {
+  data () {
     return {
       list: [],
       // 1低到高 -1高到低 0为综合
-      tag: "0",
+      tag: '0',
       // max 最大价格 min 最小
       max: [],
       min: [],
@@ -94,25 +92,25 @@ export default {
       // 总数
       total: 0,
       // 每次展示的页数
-      pageSize: 16,
-    };
+      pageSize: 16
+    }
   },
   watch: {
     // 如果排序发生改变的时候就重新调用axios
-    tag() {
-      this.getAxios();
+    tag () {
+      this.getAxios()
     },
-    page() {
-      this.getAxios();
-    },
+    page () {
+      this.getAxios()
+    }
   },
-  mounted() {
+  mounted () {
     // 页面的dom加载完成的时候取出数据
-    this.getAxios();
+    this.getAxios()
   },
   methods: {
-    ...mapMutations(["JOINCart"]),
-    getAxios() {
+    ...mapMutations(['JOINCart']),
+    getAxios () {
       // axios(
       //   `/goods/allGoods?page=${this.page}&size=16&sort=${this.tag}&priceGt=${this.min}&priceLte=${this.max} `
       // ).then((res) => {
@@ -120,73 +118,73 @@ export default {
       //   this.list = res.data.result.data;
       //   this.total = res.data.result.total;
       // });
-      axios.get("./js/goods.json").then((res) => {
-        console.log(res);
-        this.total = res.data.result.length;
-        if (this.tag === "0") {
+      axios.get('./js/goods.json').then((res) => {
+        // console.log(res)
+        this.total = res.data.result.length
+        if (this.tag === '0') {
           /* 思路 如果为默认排序的时候就判断是第几页数据 如果是第一页数据就从0 截取到一页显示第几条数据
           如果最后一页页 就是截取第几条到total
           如果是低到高就使用sort进行排序 然后在进行第几页操作
            */
           //  0为综合
-          console.log("综合");
+          // console.log('综合')
           // this.list = res.data.result;
           if (this.page === 1) {
-            console.log(1);
-            this.list = res.data.result.splice(0, this.pageSize);
+            // console.log(1)
+            this.list = res.data.result.splice(0, this.pageSize)
           } else {
             // console.log(2);
-            this.list = res.data.result.splice(this.pageSize, this.total);
+            this.list = res.data.result.splice(this.pageSize, this.total)
           }
         }
-        if (this.tag === "1") {
+        if (this.tag === '1') {
           // 1低到高
 
-          console.log("低到高");
-          let newList = res.data.result;
-          newList.sort((a, b) => a.salePrice - b.salePrice);
+          // console.log('低到高')
+          const newList = res.data.result
+          newList.sort((a, b) => a.salePrice - b.salePrice)
           if (this.page === 1) {
-            console.log(1);
+            // console.log(1)
             // this.list = res.data.result.splice(0, 20);
-            this.list = newList.splice(0, 16);
+            this.list = newList.splice(0, 16)
           } else {
             // console.log(2);
             // this.list = res.data.result.splice(20, 40);
-            this.list = newList.splice(16, 40);
+            this.list = newList.splice(16, 40)
           }
         }
-        if (this.tag === "-1") {
+        if (this.tag === '-1') {
           // -1高到低
-          console.log("高到低");
-          let newList = res.data.result;
-          newList.sort((a, b) => b.salePrice - a.salePrice);
-          this.list = newList;
+          // console.log('高到低')
+          const newList = res.data.result
+          newList.sort((a, b) => b.salePrice - a.salePrice)
+          this.list = newList
         }
-      });
+      })
     },
     // 点击之后筛选价格
-    handClick() {
+    handClick () {
       // 点击的时候调用一下axios 请求一下新的数据
-      this.getAxios();
+      this.getAxios()
       // 然后把输入框的东西清空
-      this.max = "";
-      this.min = "";
+      this.max = ''
+      this.min = ''
     },
     // 分页器
-    handleCurrentChange(value) {
+    handleCurrentChange (value) {
       // console.log(value);
-      this.page = value;
+      this.page = value
     },
     // 路由带id跳转
-    skip(id) {
-      this.$router.push(`/goodsDetails/${id}`);
+    skip (id) {
+      this.$router.push(`goodsDetails/${id}`)
     },
     // 添加到购物车
-    joinCart(id, img, name, price) {
-      this.JOINCart({ id, img, name, price });
-    },
-  },
-};
+    joinCart (id, img, name, price) {
+      this.JOINCart({ id, img, name, price })
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .goods {
