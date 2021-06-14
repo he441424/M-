@@ -14,7 +14,12 @@ export default new Vuex.Store({
     userInfo: null, // 个人信息
     cartList: [], // 购物车信息
     showCart: false, // 是否显示购物车
-    navShow: true// 导航栏是否显示
+    navShow: true, // 导航栏是否显示
+    // 提交订单的数据
+    submitList: [],
+    // 提交订单之后的商品列表和地址
+    commitList: []
+
   },
 
   mutations: {
@@ -111,7 +116,29 @@ export default new Vuex.Store({
       state.userInfo = null
       state.login = false
     // state.cartList=[];
+    },
+    // 提交订单的数据
+    submits (state, { id, img, name, price, num, prices }) {
+      const obj = {
+        id,
+        img,
+        name,
+        price,
+        num,
+        prices: prices
+      }
+      // state.submitList=[]
+      state.submitList.push(obj)
+    },
+    // 删除submitlist
+    delsublist (state) {
+      state.submitList = []
+    },
+    // 提交的订单数据和订单信息
+    commit (state, data) {
+      state.commitList.push(data)
     }
+
   },
 
   actions: {
