@@ -52,6 +52,7 @@ const routes = [
     component: () => import('../views/05-login.vue'),
     meta: {
       istrue: false
+
     }
   },
   // 用户中心
@@ -67,7 +68,18 @@ const routes = [
     path: '/checkout',
     component: () => import('../views/07-checkout.vue'),
     meta: {
-      istrue: true
+      istrue: true,
+      auth: true
+
+    }
+  },
+  // 支付页面
+  {
+    path: '/order',
+    component: () => import('../views/08-order.vue'),
+    meta: {
+      istrue: true,
+      auth: true
 
     }
   },

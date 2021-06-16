@@ -136,7 +136,7 @@ export default new Vuex.Store({
     },
     // 提交的订单数据和订单信息
     commit (state, data) {
-      state.commitList.push(data)
+      state.commitList = (data)
     }
 
   },

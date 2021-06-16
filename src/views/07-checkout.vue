@@ -56,7 +56,7 @@
           >&nbsp;元</span
         >
         <el-button style="margin: 5px" type="primary" @click="submit()"
-          ><a href="#/checkout">提交订单</a></el-button
+          ><a href="#">提交订单</a></el-button
         >
       </div>
     </div>
@@ -232,9 +232,10 @@ export default {
         this.$message.error('不能删除了')
       } else {
         // 点击删除的id和地址里面的匹配就删除
-        this.addressList.forEach((item) => {
+        this.addressList.forEach((item, index) => {
           if (item.id === data.id) {
-            this.addressList.splice(0, 1)
+            this.addressList.splice(index, 1)
+            // console.log(item.id);
           }
         })
         this.$message.success('删除成功')
@@ -247,12 +248,12 @@ export default {
     },
     // 提交订单
     submit () {
-      // console.log(this.receiveList);
-      // console.log(this.submitList);
       // let obj = this.receiveList.concat(this.submitList);
       const obj = [this.receiveList, this.submitList]
       // console.log(obj);
       this.commit(obj)
+      this.$router.push('/order')
+      // this.$router.push(`/goodsDetails`);
     }
   },
 
@@ -299,20 +300,7 @@ export default {
   justify-content: center;
   cursor: pointer;
 }
-.top {
-  overflow: hidden;
-  height: 60px;
-  width: 100%;
-  background: linear-gradient(#fbfbfb, #ececec);
-  line-height: 60px;
-  border-radius: 15px 15px 0 0;
-  margin-top: 20px;
-  border-bottom: 1px solid #ccc;
-  h3 {
-    margin-left: 20px;
-    font-weight: 500;
-  }
-}
+
 img {
   width: 100px;
   height: 100px;
