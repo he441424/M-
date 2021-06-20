@@ -5,7 +5,7 @@
     </div>
     <el-card>
       <h1 align="center">提交订单成功</h1>
-      <div class="info">
+      <div class="info" v-if="infoList[0]">
         收货信息：
         <br />
         <br />
@@ -50,7 +50,7 @@
           <p><span>运费：0.00</span> 总价：{{ price }}</p>
           <!-- <p></p> -->
           <el-button style="margin: 5px" type="primary"
-            ><a href="#">支付</a></el-button
+            ><a href="#">查看订单</a></el-button
           >
         </div>
       </div>

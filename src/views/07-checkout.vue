@@ -180,6 +180,7 @@ export default {
     this.showNav(false)
     this.checkoutList = this.submitList
     this.prices = this.checkoutList[0].prices
+    this.receiveList = this.addressList[0]
   },
   methods: {
     ...mapMutations(['showNav', 'delCart', 'commit']),
@@ -248,6 +249,10 @@ export default {
     },
     // 提交订单
     submit () {
+      // console.log(this.receiveList);
+      // if (this.receiveList[0].length === 0) {
+      //   console.log(22);
+      // }
       // let obj = this.receiveList.concat(this.submitList);
       const obj = [this.receiveList, this.submitList]
       // console.log(obj);

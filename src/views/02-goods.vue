@@ -158,7 +158,17 @@ export default {
           // console.log('高到低')
           const newList = res.data.result
           newList.sort((a, b) => b.salePrice - a.salePrice)
-          this.list = newList
+
+          if (this.page === 1) {
+            // console.log(1)
+            // this.list = res.data.result.splice(0, 20);
+            this.list = newList.splice(0, 16)
+          } else {
+            // console.log(2);
+            // this.list = res.data.result.splice(20, 40);
+            this.list = newList.splice(16, 40)
+          }
+          // this.list = newList;
         }
       })
     },
